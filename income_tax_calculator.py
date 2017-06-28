@@ -1,6 +1,6 @@
 #!bin/env python3
 # income_tax_calculator.py - Input annual salary to calculate income tax across the 4 current tax bands. Displays tax
-# and net pay - monthly and annual - in CSV format. User-friendly version with detailed prompt.
+# and net pay - monthly and annual - in CSV format. Original user-friendly version with detailed prompt.
 
 import sys
 import csv
@@ -16,7 +16,7 @@ while True:
         print("Unable to recognise input: '{}' Please try again.".format(annual_salary))
         continue
 
-    annual_salary = int(round(annual_salary))
+    annual_salary = int(round(annual_salary))  # Float-Int conversion included to allow float inputs.
     if 0 < annual_salary < 1000000:
         break
     else:
