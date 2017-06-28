@@ -7,19 +7,17 @@
 import sys
 import csv
 
-annual_salary = sys.argv[1]
-
-try:
-	annual_salary = float(annual_salary)
-except ValueError:
-    print("Unable to recognise input: '{}' Please try again with a number between 0-999999.".format(annual_salary))
-    sys.exit()
-
-annual_salary = int(round(annual_salary))
-
-if 0 > annual_salary > 1000000:
-    print("Amount outside of £0-999999 range. Please try again.")
-    sys.exit()
+if len(sys.argv) > 1:
+    try:
+        annual_salary = float(sys.argv[1])
+    except ValueError:
+        print("Unable to recognise input: '{}' Please try a number between 0-999999.".format(sys.argv[1]))
+        sys.exit()
+    if 0 < annual_salary < 1000000:
+        annual_salary = int(round(annual_salary))
+    else:
+        print("Unable to recognise input: '{}'. Please try a number between 0-999999.".format(sys.argv[1]))
+        sys.exit()
 
 annual_salary_pennies = annual_salary * 100
 basic_rate = 1150000  # 20%
