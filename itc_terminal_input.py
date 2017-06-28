@@ -7,17 +7,16 @@
 import sys
 import csv
 
-if len(sys.argv) > 1:
-    try:
-        annual_salary = float(sys.argv[1])
-    except ValueError:
-        print("Unable to recognise input: '{}' Please try a number between 0-999999.".format(sys.argv[1]))
-        sys.exit()
-    if 0 < annual_salary < 1000000:
-        annual_salary = int(round(annual_salary))
-    else:
-        print("Unable to recognise input: '{}'. Please try a number between 0-999999.".format(sys.argv[1]))
-        sys.exit()
+try:
+    if len(sys.argv) < 2:
+        raise ValueError("No input supplied by command line.")
+    annual_salary = float(sys.argv[1])
+    annual_salary = int(round(annual_salary))
+    if not 0 < annual_salary < 1000000:
+        raise ValueError("Input outside of range.")
+except ValueError as err:
+    print(err, "Invalid. Did you try a number between 0-999999?")
+    sys.exit()
 
 annual_salary_pennies = annual_salary * 100
 basic_rate = 1150000  # 20%
@@ -49,4 +48,3 @@ itc_writer.writerow(["{:.2f}".format(tax_paid // 12 / 100),
                      "{:.2f}".format(net_pay // 12 / 100),
                      "{:.2f}".format(tax_paid / 100),
                      "{:.2f}".format(net_pay / 100)])
-
