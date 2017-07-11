@@ -19,9 +19,9 @@ except ValueError as err:
     sys.exit()
 
 annual_salary_pennies = annual_salary * 100
-basic_rate = 1150000  # 20%
-higher_rate = 4500000  # 40%
 additional_rate = 15000000  # 45%
+higher_rate = 4500000  # 40%
+basic_rate = 1150000  # 20%
 tax_paid = 0
 
 if annual_salary_pennies > additional_rate:
@@ -40,7 +40,6 @@ elif annual_salary_pennies > basic_rate:
     tax_paid += (over_cap * 20) // 100
 
 net_pay = annual_salary_pennies - tax_paid
-annual_salary_month = annual_salary_pennies / 12 * 100
 
 itc_writer = csv.writer(sys.stdout)
 itc_writer.writerow(["Monthly tax (£)", "Monthly take home pay (£)", "Annual tax (£)", "Annual take home pay (£)"])
